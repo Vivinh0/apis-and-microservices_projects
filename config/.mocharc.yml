@@ -1,3 +1,0 @@
-extension:
-  - 'test.js'
-spec: 'Tests/**/*.test.js'
