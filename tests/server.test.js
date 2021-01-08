@@ -93,6 +93,7 @@ describe("Test Timestamp Microservice", () => {
     });
   });
 
+  // TO-DO milliseconds test fails
   describe("GET /api/timestamp", () => {
     it("should return a JSON object with an 'unix' key that is a Unix timestamp of current date in milliseconds and an 'utc' key that is a string of the current date in the format: Thu, 01 Jan 1970 00:00:00 GMT", (done) => {
       chai
