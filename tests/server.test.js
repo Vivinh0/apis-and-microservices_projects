@@ -24,7 +24,7 @@ describe("Test Timestamp Microservice", () => {
   });
 
   describe("GET /api/timestamp/:date with a valid date", () => {
-    it("should return a JSON object with an 'unix' key that is a Unix timestamp of the input date in milliseconds and an 'utc' key that is a string of the input date in the format: Thu, 01 Jan 1970 00:00:00 GM", (done) => {
+    it("should return a JSON object with an 'unix' key that is a Unix timestamp of the input date in milliseconds and an 'utc' key that is a string of the input date in the format: Thu, 01 Jan 1970 00:00:00 GMT", (done) => {
       chai
         .request(server)
         .get("/api/timestamp/2015-12-25")
@@ -79,6 +79,32 @@ describe("Test Timestamp Microservice", () => {
           const expectedResult = {
             unix: 1451001600000,
             utc: "Fri, 25 Dec 2015 00:00:00 GMT",
+          };
+
+          // Results to Strings
+          const actualResultToString = objToString(actualResult);
+          const expectedResultToString = objToString(expectedResult);
+
+          // Test results
+          expect(actualResultToString).to.be.equal(expectedResultToString);
+
+          done();
+        });
+    });
+  });
+
+  describe("GET /api/timestamp", () => {
+    it("should return a JSON object with an 'unix' key that is a Unix timestamp of current date in milliseconds and an 'utc' key that is a string of the current date in the format: Thu, 01 Jan 1970 00:00:00 GMT", (done) => {
+      chai
+        .request(server)
+        .get("api/timestamp")
+        .end((err, res) => {
+          // Get results
+          const actualResult = res.body;
+          const currDate = new Date();
+          const expectedResult = {
+            unix: currDate,
+            utc: currDate.toGTMString(),
           };
 
           // Results to Strings
