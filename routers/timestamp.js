@@ -3,6 +3,7 @@
 const router = require("express").Router();
 
 router
+  // GET /api/timestamp/1451001600000
   .get("/1451001600000", (req, res) => {
     // res.json({ msg: "Ok" });
     const date = 1451001600000;
@@ -12,6 +13,7 @@ router
     const response = { unix: date, utc: dateInUTC };
     res.json(response);
   })
+  // GET /api/timestamp/:date
   .get(
     "/:date",
     // Middleware checks if input date is invalid
@@ -33,6 +35,12 @@ router
       const response = { unix: dateInMilliseconds, utc: dateInUTC };
       res.json(response);
     }
-  );
+  )
+  // GET /api/timestamp
+  .get("", (req, res, next) => {
+    // res.json({ msg: "Ok" });
+    const currDate = new Date();
+    res.json({ unix: currDate.getTime(), utc: currDate.toGMTString() });
+  });
 
 module.exports = router;
