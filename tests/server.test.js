@@ -46,6 +46,26 @@ describe("Test Timestamp Microservice", () => {
           done();
         });
     });
+
+    it('should return a JSON object having the structure { error : "Invalid Date" } when the input date string is invalid', (done) => {
+      chai
+        .request(server)
+        .get("/api/timestamp/invalid-input-date")
+        .end((err, res) => {
+          // Get results
+          const actualResult = res.body;
+          const expectedResult = { error: "Invalid Date" };
+
+          // Results to Strings
+          const actualResultToString = objToString(actualResult);
+          const expectedResultToString = objToString(expectedResult);
+
+          // Test results
+          expect(actualResultToString).to.be.equal(expectedResultToString);
+
+          done();
+        });
+    });
   });
 
   describe("GET /api/timestamp/1451001600000", () => {
