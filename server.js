@@ -27,7 +27,7 @@ app.use("/api/timestamp", require("./routers/timestamp"));
 
 // listen for requests :)
 var listener = app.listen(process.env.PORT || 5000, function () {
-  if (RegExp('[dev | prod]').test(process.env.NODE_ENV)) {
+  if (RegExp("[dev | prod]").test(process.env.NODE_ENV)) {
     console.log("Your app is listening on port " + listener.address().port);
   }
 });
