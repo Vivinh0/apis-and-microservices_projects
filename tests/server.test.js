@@ -97,14 +97,14 @@ describe("Test Timestamp Microservice", () => {
     it("should return a JSON object with an 'unix' key that is a Unix timestamp of current date in milliseconds and an 'utc' key that is a string of the current date in the format: Thu, 01 Jan 1970 00:00:00 GMT", (done) => {
       chai
         .request(server)
-        .get("api/timestamp")
+        .get("/api/timestamp")
         .end((err, res) => {
           // Get results
           const actualResult = res.body;
           const currDate = new Date();
           const expectedResult = {
-            unix: currDate,
-            utc: currDate.toGTMString(),
+            unix: currDate.getTime(),
+            utc: currDate.toGMTString(),
           };
 
           // Results to Strings
