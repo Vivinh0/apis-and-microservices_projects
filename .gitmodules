@@ -1,1 +1,4 @@
 
+[submodule "boilerplate-project-headerparser"]
+	path = boilerplate-project-headerparser
+	url = https://github.com/freeCodeCamp/boilerplate-project-headerparser.git
