@@ -5,8 +5,12 @@ const chaiHttp = require("chai-http");
 const expect = chai.expect;
 chai.use(chaiHttp);
 
-function objToString(obj) {
-  return JSON.stringify(obj, null, 2);
+function objToString(object) {
+  return JSON.stringify(object, null, 2);
+}
+
+function unixDateInMinutes(unixDate) {
+  return Math.floor(unixDate / (1000 * 60));
 }
 
 describe("Test Timestamp Microservice", () => {
@@ -108,12 +112,13 @@ describe("Test Timestamp Microservice", () => {
             utc: currDate.toGMTString(),
           };
 
-          // Results to Strings
-          const actualResultToString = objToString(actualResult);
-          const expectedResultToString = objToString(expectedResult);
+          // Process results
+          const actualUnixDateInMin = unixDateInMinutes(actualResult.unix);
+          const expectedUnixDateInMin = unixDateInMinutes(expectedResult.unix);
 
           // Test results
-          expect(actualResultToString).to.be.equal(expectedResultToString);
+          expect(actualUnixDateInMin).to.be.equal(expectedUnixDateInMin);
+          expect(expectedResult.utc).to.be.equal(expectedResult.utc);
 
           done();
         });
