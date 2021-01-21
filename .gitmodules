@@ -4,3 +4,6 @@
 [submodule "boilerplate-project-urlshortener"]
 	path = boilerplate-project-urlshortener
 	url = https://github.com/Vivinh0/boilerplate-project-urlshortener.git
+[submodule "boilerplate-project-exercisetracker"]
+	path = boilerplate-project-exercisetracker
+	url = https://github.com/Vivinh0/boilerplate-project-exercisetracker.git
